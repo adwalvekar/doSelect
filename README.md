@@ -1,7 +1,6 @@
 # doSelect
 An Image API for the needs of the Internet.(_This is a solution submission for an Internship test_)
 ## Usage:
-<br>
 ### GENERAL INFORMATION
 I highly recommend using [POSTMAN](https://www.getpostman.com/). Makes the whole experience very seamless.
 All the image Requests are to be made to the endpoint `/api/images`. The HTTP requests used in this app are `POST`, `GET`, `DELETE`, `PATCH`
