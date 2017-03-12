@@ -4,7 +4,7 @@ An Image API for the needs of the Internet.(_This is a solution submission for a
 <br>
 ### GENERAL INFORMATION
 I highly recommend using [POSTMAN](https://www.getpostman.com/). Makes the whole experience very seamless.
-All the image Requests are to be made to the endpoint `/api/images`. The HTTP requests used in this app are `POST`, `GET`, `DELETE`, `PATCH
+All the image Requests are to be made to the endpoint `/api/images`. The HTTP requests used in this app are `POST`, `GET`, `DELETE`, `PATCH`
 <br>
 ### Generating a Token
 Before being able to make any requests, you will need to generate a token. Make a `GET` Request to the endpoint `/api/images/gen_token` to first generate a unique token. This token needs to be used with all the requests. (I understand that this is not safe for prod, but I needed a way to generate a token)
