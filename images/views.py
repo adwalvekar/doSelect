@@ -8,6 +8,7 @@ import random
 import pylzma
 from django.conf import settings
 from cStringIO import StringIO
+from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from images.serializers import TokensSerializer, ImagesSerializer
 from multiprocessing import Pool
@@ -21,6 +22,19 @@ class Gen_Token(APIView):
 		t.save()
 		serializer = TokensSerializer(t, many = False)
 		return Response(serializer.data, status = 201)
+
+class ImageView(APIView):
+	"""docstring for ImageVIew"""
+	def get(self, request,format = None):
+		filename = request.GET['filename']
+		image = Images.objects.filter(filename = filename).first()
+		if image is None:
+			return Response({'detail': 'Invalid Filename'},status = 404)
+		namef = open(settings.IMAGES_ROOT+'/'+filename+'.'+'compr', 'r+')
+		filecontent = namef.read()
+		uncomp = pylzma.decompress(filecontent)
+		ext = filename.rsplit('.',1)[1].lower()
+		return HttpResponse(uncomp, content_type = 'image/'+ext)
 
 class Index(APIView):
 	"""docstring for Index"""
