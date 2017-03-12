@@ -44,8 +44,8 @@ class Index(APIView):
 			file =  request.FILES['file']
 			orignal_name = file.__str__()
 			org_size = file._size
-			if file._size > 26214400:
-				return Response({"detail":"File Size Too Large"},status = 413)
+			if file._size > 26214400 or not isValidExtension(orignal_name):
+				return Response({"detail":"File Size Too Large Or Invalid Extension"},status = 413)
 			img = Images.objects.filter(orignal_name = orignal_name).first()
 			if img is None:
 				compressed_obj = pylzma.compressfile(file)
@@ -100,8 +100,8 @@ class Index(APIView):
 				file =  request.FILES['file']
 				orignal_name = file.__str__()
 				org_size = file._size
-				if file._size > 26214400:
-					return Response({"detail":"File Size Too Large"},status = 413)
+				if file._size > 26214400 or not isValidExtension(orignal_name):
+					return Response({"detail":"File Size Too Large or Invalid Extension"},status = 413)
 				compressed_obj = pylzma.compressfile(file)
 				compressed = ''
 				while True:
@@ -134,3 +134,8 @@ def getBody(c):
 		for i in a:
 			b[i[0]] = i[1]
 		return b
+
+def isValidExtension(upfile):
+	print upfile
+	return '.' in upfile and \
+		upfile.rsplit('.', 1)[1].lower() in settings.ALLOWED_EXTENSIONS

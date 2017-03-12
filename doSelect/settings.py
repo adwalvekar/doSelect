@@ -132,3 +132,4 @@ REST_FRAMEWORK = {
 }
 
 IMAGES_ROOT = os.path.join('/tmp/', 'images/userimages')
+ALLOWED_EXTENSIONS = set(['jpeg','png', 'jpg'])
