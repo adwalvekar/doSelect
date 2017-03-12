@@ -1,0 +1,7 @@
+{
+  "name": "A DoSelect Internship Test For Aditya Walvekar",
+  "description": "A simple barebones Image API with compression.",
+  "image": "heroku/python",
+  "repository": "https://github.com/adwalvekar/doSelect",
+  "keywords": ["python", "django" ]
+}
